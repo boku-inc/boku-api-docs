@@ -38,8 +38,6 @@ paths:
         The 'optin' call is used in conjunction with the following related methods in order to complete consumer approval:
         * `validate-optin` - identify and validate the billing account the consumer is registering as their payment method
         * `confirm-optin` - confirm that the associated 'optin' should be activated for billing
-
-        It is possible to restrict an optin to be used for a single charge by specifying the 'terms' element. When provided, the system will only allow a single 'charge' request to be made for this optin.
       parameters: []
       requestBody:
         description: |
@@ -382,6 +380,7 @@ paths:
         required: true
       responses:
         "200":
+          description: |
           headers:
             X-SignedResponse:
               description: Signed response
@@ -560,7 +559,7 @@ paths:
             **Result reason codes:**
             |Reason code|Description|
             |-----------|-----------|
-            |0  |Charge succeeded|
+            |0  |Refund succeeded|
             |15 |Network is temporarily unavailable|
             |17 |Network is temporarily unavailable because it is in a scheduled downtime|
             |23 |The charge or refund is currently processing and has not yet reached a final status|
@@ -617,6 +616,7 @@ paths:
         required: true
       responses:
         "200":
+          description: |
           headers:
             X-SignedResponse:
               description: Signed response
@@ -773,7 +773,7 @@ paths:
                     </notification-response>
       servers:
       - url: '{scheme}://{host}:{port}/{path}'
-        description: Merchant server to the send update entitlement notification to
+        description: Merchant server to send the refund notification to
         variables:
           scheme:
             default: https
@@ -784,7 +784,7 @@ paths:
             default: merchant.com
           port:
             default: "443"
-          path: {}
+          path: { default: "" }
   /charge-notification:
     post:
       tags:
@@ -872,7 +872,7 @@ paths:
                     </notification-response>
       servers:
       - url: '{scheme}://{host}:{port}/{path}'
-        description: Merchant server to the send update entitlement notification to
+        description: Merchant server to send the charge notification to
         variables:
           scheme:
             default: https
@@ -883,7 +883,7 @@ paths:
             default: merchant.com
           port:
             default: "443"
-          path: {}
+          path: { default: "" }
 components:
   schemas:
     OptinRequest:
@@ -1692,7 +1692,7 @@ components:
         Free-text consumer account identifier provided by the payment provider
 
         This value will be recognizable to the user and might not be unique.
-      example: "12345"
+      example: "te****st@boku.com"
       xml:
         name: account-identifier
     Amount:
@@ -1803,7 +1803,7 @@ components:
       description: Country code in ISO 3166-1-alpha-2 standard
       example: JP
       externalDocs:
-        url: http://www.iso.org/iso/english_country_names_and_code_elements
+        url: https://www.iso.org/iso/english_country_names_and_code_elements
       xml:
         name: country
     Currency:
@@ -1892,7 +1892,7 @@ components:
         Unique user ID provided by the payment provider
 
         This value could be an ID that is not recognizable to the user.
-      example: "12345678"
+      example: "cc1c4f3"
       xml:
         name: issuer-unique-user-id
     MerchantConsumerId:
@@ -2108,8 +2108,8 @@ components:
       description: |
         Type of refund
 
-        * `refund` - the charge has been refunded
-        * `chargeback` - the charge has been refunded and a chargeback has been sent to the merchant
+        * `refund` - the refund was initiated by the merchant
+        * `chargeback` - the refund was initiated by the issuer
       example: refund
       xml:
         name: refund-type
@@ -2376,6 +2376,8 @@ components:
           optinStatus: pending-confirm
           networkId: jp-super
           country: JP
+          accountIdentifier: te****st@boku.com
+          issuerUniqueUserId: cc1c4f3
         paymentMethod: superwallet
         optinType: hosted
     ConfirmOptinRequest:
@@ -2399,6 +2401,8 @@ components:
           optinStatus: active
           networkId: jp-super
           country: JP
+          accountIdentifier: te****st@boku.com
+          issuerUniqueUserId: cc1c4f3
         paymentMethod: superwallet
         optinType: hosted
     CancelOptinRequest:
@@ -2422,6 +2426,8 @@ components:
           optinStatus: closed
           networkId: jp-super
           country: JP
+          accountIdentifier: te****st@boku.com
+          issuerUniqueUserId: cc1c4f3
     CancelOptinResponse_Failed:
       value:
         result:
