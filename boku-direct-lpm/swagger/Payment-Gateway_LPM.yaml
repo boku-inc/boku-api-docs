@@ -9,7 +9,7 @@ info:
     email: support@boku.com
   license:
     name: MIT License
-    url: https://github.com/boku-inc/boku-http-auth/blob/HEAD/LICENSE.txt
+    url: https://github.com/boku-inc/boku-api-docs/blob/HEAD/LICENSE
   version: "1.0"
 servers:
 - url: https://{country}-api4-stage.boku.com
