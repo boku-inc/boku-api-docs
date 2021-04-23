@@ -8,7 +8,7 @@ info:
     registered merchant account, merchants receive a security key used to authenticate communications in either
     direction.
 
-    Developers should consult the [Boku API Signature Authentication Guide](#) for additional details with respect to
+    Developers should consult the [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide) for additional details with respect to
     implementing security on the Boku API's.
 
     # API Flows
@@ -31,12 +31,12 @@ info:
     url: https://raw.githubusercontent.com/boku-inc/boku-api-docs/main/LICENSE
   version: "1.0"
 servers:
-  - url: https://{country}-api4-stage.boku.com
+  - url: 'https://{country}-api4-stage.boku.com'
     description: Sandbox server
     variables:
       country:
         description: Country code in ISO 3166-1-alpha-2 standard
-        default: JP
+        default: jp
 tags:
   - name: Consumer Approval
   - name: Charge
@@ -124,7 +124,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /optin/3.0/validate-optin:
     post:
       tags:
@@ -189,7 +189,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /optin/3.0/confirm-optin:
     post:
       tags:
@@ -244,7 +244,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /optin/3.0/cancel-optin:
     post:
       tags:
@@ -311,7 +311,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/charge:
     post:
       tags:
@@ -409,7 +409,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/query-charge:
     post:
       tags:
@@ -462,7 +462,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/reverse-charge:
     post:
       tags:
@@ -525,7 +525,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/begin-single-charge:
     post:
       tags:
@@ -617,7 +617,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/refund-charge:
     post:
       tags:
@@ -681,7 +681,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /billing/3.0/query-refund:
     post:
       tags:
@@ -735,7 +735,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](#)
+            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
   /refund-notification:
     post:
       tags:
@@ -1403,7 +1403,7 @@ components:
 
             Must be IPv4 address.
           xml:
-            name: customer-ip-address
+            name: consumer-ip-address
           allOf:
             - $ref: '#/components/schemas/Ip4Address'
         subscription:
@@ -1525,7 +1525,7 @@ components:
 
             Must be IPv4 address.
           xml:
-            name: customer-ip-address
+            name: consumer-ip-address
           allOf:
             - $ref: '#/components/schemas/Ip4Address'
         paymentMethod:
@@ -1593,9 +1593,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/PaymentMethod'
         hosted:
-          type: object
           required:
             - redirectUrl
+          type: object
           properties:
             redirectUrl:
               maxLength: 2048
@@ -1803,9 +1803,9 @@ components:
             name: skip-retry
           default: false
         notification:
-          type: object
           required:
             - send
+          type: object
           properties:
             send:
               type: boolean
@@ -2462,10 +2462,10 @@ components:
           xml:
             name: is-subscription
         period:
-          type: object
           required:
             - count
             - unit
+          type: object
           properties:
             unit:
               type: string
