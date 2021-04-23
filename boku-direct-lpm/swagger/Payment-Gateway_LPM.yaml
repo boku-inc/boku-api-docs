@@ -2,7 +2,6 @@
 openapi: 3.0.0
 info:
   title: Boku Direct - Local Payment Methods
-  version: '1.0'
   description: |
     # API Security
     Security is a significant consideration for payment platforms. As part of the registration process for each
@@ -29,12 +28,8 @@ info:
     email: support@boku.com
   license:
     name: MIT License
-    url: https://github.com/boku-inc/boku-api-docs/blob/HEAD/LICENSE
-tags:
-  - name: Consumer Approval
-  - name: Charge
-  - name: Refund
-  - name: Notifications
+    url: https://raw.githubusercontent.com/boku-inc/boku-api-docs/main/LICENSE
+  version: "1.0"
 servers:
   - url: https://{country}-api4-stage.boku.com
     description: Sandbox server
@@ -42,6 +37,11 @@ servers:
       country:
         description: Country code in ISO 3166-1-alpha-2 standard
         default: JP
+tags:
+  - name: Consumer Approval
+  - name: Charge
+  - name: Refund
+  - name: Notifications
 paths:
   /optin/3.0/optin:
     post:
@@ -80,7 +80,7 @@ paths:
                 $ref: '#/components/examples/OptinRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -109,6 +109,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -116,9 +118,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/OptinResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/OptinResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -151,7 +153,7 @@ paths:
                 $ref: '#/components/examples/ValidateOptinRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -172,6 +174,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -179,9 +183,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidateOptinResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/ValidateOptinResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -206,7 +210,7 @@ paths:
                 $ref: '#/components/examples/ConfirmOptinRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -225,6 +229,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -232,9 +238,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConfirmOptinResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/ConfirmOptinResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -272,7 +278,7 @@ paths:
                 $ref: '#/components/examples/CancelOptinRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -288,6 +294,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -295,11 +303,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CancelOptinResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/CancelOptinResponse_Success'
-                125 - Optin Not Found:
+                "125 - Optin Not Found":
                   $ref: '#/components/examples/CancelOptinResponse_Failed'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -342,7 +350,7 @@ paths:
                 $ref: '#/components/examples/ChargeRequest_Sync_With_Subscription'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -384,6 +392,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -391,11 +401,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ChargeResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/ChargeResponse_Success'
-                23 - Submitted and in progress:
+                "23 - Submitted and in progress":
                   $ref: '#/components/examples/ChargeResponse_InProgress'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -428,11 +438,13 @@ paths:
                 $ref: '#/components/examples/QueryChargeRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -440,13 +452,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/QueryChargeResponse'
               examples:
-                0 - Single successful charge:
+                "0 - Single successful charge":
                   $ref: '#/components/examples/QueryChargeResponse_SingleSuccess'
-                0 - Single failed charge:
+                "0 - Single failed charge":
                   $ref: '#/components/examples/QueryChargeResponse_SingleFailed'
-                0 - No results:
+                "0 - No results":
                   $ref: '#/components/examples/QueryChargeResponse_NoResults'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -482,7 +494,7 @@ paths:
                 $ref: '#/components/examples/ReverseChargeRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -498,6 +510,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -505,9 +519,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReverseChargeResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/ReverseChargeResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -548,7 +562,7 @@ paths:
                 $ref: '#/components/examples/BeginSingleChargeRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -588,6 +602,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -595,9 +611,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/BeginSingleChargeResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/BeginSingleChargeResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -622,7 +638,7 @@ paths:
                 $ref: '#/components/examples/RefundChargeRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Result reason codes**
             |Reason code|Description|
@@ -650,6 +666,8 @@ paths:
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -657,9 +675,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/RefundChargeResponse'
               examples:
-                0 - Operation Successful:
+                "0 - Operation Successful":
                   $ref: '#/components/examples/RefundChargeResponse'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -693,11 +711,13 @@ paths:
                 $ref: '#/components/examples/QueryRefundRequest'
         required: true
       responses:
-        200:
+        "200":
           description: |
           headers:
             X-SignedResponse:
               description: Signed response
+              style: simple
+              explode: false
               schema:
                 type: string
           content:
@@ -705,13 +725,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/QueryRefundResponse'
               examples:
-                0 - Single successful refund:
+                "0 - Single successful refund":
                   $ref: '#/components/examples/QueryRefundResponse_SingleSuccess'
-                0 - Single failed refund:
+                "0 - Single failed refund":
                   $ref: '#/components/examples/QueryRefundResponse_SingleFailed'
-                0 - No results:
+                "0 - No results":
                   $ref: '#/components/examples/QueryRefundResponse_NoResults'
-        401:
+        "401":
           description: |
             Unauthorized
 
@@ -826,7 +846,7 @@ paths:
                   </refund-notification>
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Notification Acknowledgements**
 
@@ -895,7 +915,7 @@ paths:
                         </result>
                     </notification-response>
       servers:
-        - url: '{scheme}://{host}:{port}/{path}'
+        - url: "{scheme}://{host}:{port}/{path}"
           description: Merchant server to send the refund notification to
           variables:
             scheme:
@@ -906,8 +926,8 @@ paths:
             host:
               default: merchant.com
             port:
-              default: '443'
-            path: { default: '' }
+              default: "443"
+            path: { default: "" }
   /charge-notification:
     post:
       tags:
@@ -982,7 +1002,7 @@ paths:
                   </charge-notification>
         required: true
       responses:
-        200:
+        "200":
           description: |
             **Notification Acknowledgements**
 
@@ -1040,7 +1060,7 @@ paths:
                         </result>
                     </notification-response>
       servers:
-        - url: '{scheme}://{host}:{port}/{path}'
+        - url: "{scheme}://{host}:{port}/{path}"
           description: Merchant server to send the charge notification to
           variables:
             scheme:
@@ -1051,8 +1071,8 @@ paths:
             host:
               default: merchant.com
             port:
-              default: '443'
-            path: { default: '' }
+              default: "443"
+            path: { default: "" }
 components:
   schemas:
     OptinRequest:
@@ -2086,7 +2106,7 @@ components:
       minLength: 1
       type: string
       description: Merchant assigned consumer ID
-      example: 8781686
+      example: "8781686"
       xml:
         name: merchant-consumer-id
     MerchantData:
@@ -2119,7 +2139,7 @@ components:
       minLength: 1
       type: string
       description: Merchant assigned unique request ID
-      example: 1617746492637
+      example: "1617746492637"
       xml:
         name: merchant-request-id
     NetworkId:
@@ -2143,7 +2163,7 @@ components:
       minLength: 1
       type: string
       description: The merchant assigned ID used as `merchant-request-id` in the original ***optin*** call
-      example: 1617746492637
+      example: "1617746492637"
       xml:
         name: optin-request-id
     OptinState:
@@ -2278,7 +2298,7 @@ components:
       minLength: 1
       type: string
       description: Boku assigned unique ID for each refund
-      example: 1119926629536104448
+      example: "1119926629536104448"
       xml:
         name: refund-id
     RefundStatus:
@@ -2398,7 +2418,7 @@ components:
       minLength: 1
       type: string
       description: Boku assigned unique ID for each reversal
-      example: 1119929700437721088
+      example: "1119929700437721088"
       xml:
         name: reversal-id
     Subscription:
@@ -2455,7 +2475,7 @@ components:
         Time request was received ("YYYY-MM-DD hh:mm:ss")
 
         All timestamps are in UTC.
-      example: 2015-02-40 04:44:16
+      example: "2015-03-12 04:44:16"
       xml:
         name: timestamp
     BeginSingleChargeResponse_hosted:
@@ -2542,7 +2562,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 15:01:34
+        timestamp: "2021-04-06 15:01:34"
         merchantId: gatewaymerchant
         merchantRequestId: 1617746492637
         optinId: D4q4jgAAAABTRwAAAAAAAA
@@ -2592,7 +2612,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 15:06:44
+        timestamp: "2021-04-06 15:06:44"
         merchantId: gatewaymerchant
         merchantRequestId: 1617746804587
         optinId: D4q4jgAAAABTRwAAAAAAAA
@@ -2646,7 +2666,7 @@ components:
         merchantItemDescription: Puzzle game
         optinId: D4q4jgAAAABTRwAAAAAAAA
         currency: JPY
-        totalAmount: '548.00'
+        totalAmount: "548.00"
         timeout:
           after: 10000
     ChargeRequest_Async:
@@ -2658,7 +2678,7 @@ components:
         merchantItemDescription: Puzzle game
         optinId: D4q4jgAAAABTRwAAAAAAAA
         currency: JPY
-        totalAmount: '548.00'
+        totalAmount: "548.00"
     ChargeRequest_Sync_With_Subscription:
       value:
         merchantId: gatewaymerchant
@@ -2668,7 +2688,7 @@ components:
         merchantItemDescription: Puzzle game
         optinId: D4q4jgAAAABTRwAAAAAAAA
         currency: JPY
-        totalAmount: '548.00'
+        totalAmount: "548.00"
         timeout:
           after: 10000
         subscription:
@@ -2684,7 +2704,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 15:25:01
+        timestamp: "2021-04-06 15:25:01"
         merchantId: gatewaymerchant
         merchantRequestId: 1617747901845
         merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
@@ -2702,7 +2722,7 @@ components:
           message: Submitted and in progress
           retriable: true
           retryDelay: 5000
-        timestamp: 2021-04-06 15:25:01
+        timestamp: "2021-04-06 15:25:01"
         merchantId: gatewaymerchant
         merchantRequestId: 1617747901845
         merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
@@ -2732,13 +2752,13 @@ components:
               retriable: false
             chargeStatus: successs
             chargeId: 72e6xii7srxdbf6ggkwkxwpk
-            timestamp: 2021-04-06 15:25:01
+            timestamp: "2021-04-06 15:25:01"
             merchantId: gatewaymerchant
             merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
             country: JP
             networkId: jp-super
             currency: JPY
-            totalAmount: '548.00'
+            totalAmount: "548.00"
             merchantItemDescription: Puzzle game
             merchantData: TY235g897qWs
     QueryChargeResponse_SingleFailed:
@@ -2756,13 +2776,13 @@ components:
               retriable: false
             chargeStatus: failed
             chargeId: 72e6xii7srxdbf6ggkwkxwpk
-            timestamp: 2021-04-06 15:25:01
+            timestamp: "2021-04-06 15:25:01"
             merchantId: gatewaymerchant
             merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
             country: JP
             networkId: jp-super
             currency: JPY
-            totalAmount: '548.00'
+            totalAmount: "548.00"
             merchantItemDescription: Puzzle game
             merchantData: TY235g897qWs
     QueryChargeResponse_NoResults:
@@ -2785,7 +2805,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 16:39:13
+        timestamp: "2021-04-06 16:39:13"
         merchantId: gatewaymerchant
         merchantRequestId: 1617752349641
         reversalId: 1119929700437721088
@@ -2799,7 +2819,7 @@ components:
         merchantData: TY235g897qWs
         merchantItemDescription: Puzzle game
         currency: JPY
-        totalAmount: '548.00'
+        totalAmount: "548.00"
         timeout:
           after: 10000
         paymentMethod: superwallet
@@ -2814,7 +2834,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 15:25:01
+        timestamp: "2021-04-06 15:25:01"
         merchantId: gatewaymerchant
         merchantRequestId: 1617747901845
         merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
@@ -2845,7 +2865,7 @@ components:
           reasonCode: 0
           message: Operation Successful
           retriable: false
-        timestamp: 2021-04-06 16:27:18
+        timestamp: "2021-04-06 16:27:18"
         merchantId: gatewaymerchant
         merchantRequestId: 1617751638628
         chargeId: 72e6xii7srxdbf6ggkwkxwpk
@@ -2873,7 +2893,7 @@ components:
               retriable: false
             refundStatus: successs
             refundId: 1119926629536104448
-            timestamp: 2021-04-06 16:27:18
+            timestamp: "2021-04-06 16:27:18"
             merchantId: gatewaymerchant
             merchantRefundId: 5853f0b3-e797-40a3-b299-1155ee7fe98d
             chargeId: 72e6xii7srxdbf6ggkwkxwpk
@@ -2881,7 +2901,7 @@ components:
             country: JP
             networkId: jp-super
             currency: JPY
-            refundAmount: '548.00'
+            refundAmount: "548.00"
             type: refund
             merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
     QueryRefundResponse_SingleFailed:
@@ -2899,7 +2919,7 @@ components:
               retriable: false
             refundStatus: failed
             refundId: 1119926629536104448
-            timestamp: 2021-04-06 16:27:18
+            timestamp: "2021-04-06 16:27:18"
             merchantId: gatewaymerchant
             merchantRefundId: 5853f0b3-e797-40a3-b299-1155ee7fe98d
             chargeId: 72e6xii7srxdbf6ggkwkxwpk
@@ -2907,7 +2927,7 @@ components:
             country: JP
             networkId: jp-super
             currency: JPY
-            refundAmount: '548.00'
+            refundAmount: "548.00"
             type: refund
             merchantTransactionId: 7dbe2a1f-b197-4390-8c8a-14d73f64a52d
     QueryRefundResponse_NoResults:
