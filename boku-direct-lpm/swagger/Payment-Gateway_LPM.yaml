@@ -915,7 +915,7 @@ paths:
                         </result>
                     </notification-response>
       servers:
-        - url: "{scheme}://{host}:{port}/{path}"
+        - url: '{scheme}://{host}:{port}/{path}'
           description: Merchant server to send the refund notification to
           variables:
             scheme:
@@ -1060,7 +1060,7 @@ paths:
                         </result>
                     </notification-response>
       servers:
-        - url: "{scheme}://{host}:{port}/{path}"
+        - url: '{scheme}://{host}:{port}/{path}'
           description: Merchant server to send the charge notification to
           variables:
             scheme:
@@ -1593,7 +1593,21 @@ components:
           allOf:
             - $ref: '#/components/schemas/PaymentMethod'
         hosted:
-          $ref: '#/components/schemas/BeginSingleChargeResponse_hosted'
+          type: object
+          required:
+            - redirectUrl
+          properties:
+            redirectUrl:
+              maxLength: 2048
+              minLength: 1
+              type: string
+              description: URL, where the user should be redirected to so the charge, can be authorized
+              example: https://www.superwallet.com/authorize
+              xml:
+                name: redirect-url
+          description: Provides information for proceeding with a hosted charge
+          xml:
+            name: hosted
       xml:
         name: begin-single-charge-response
     QueryChargeRequest:
@@ -1789,7 +1803,20 @@ components:
             name: skip-retry
           default: false
         notification:
-          $ref: '#/components/schemas/RefundChargeRequest_notification'
+          type: object
+          required:
+            - send
+          properties:
+            send:
+              type: boolean
+              description: Flag to indicate if a notification should be sent for this refund
+              xml:
+                name: send
+                attribute: true
+              default: false
+          description: Element containing notification information
+          xml:
+            name: notification
       xml:
         name: refund-charge-request
     RefundChargeResponse:
@@ -1904,7 +1931,7 @@ components:
         * Always uses `.` as the decimal separator
         * Do not use any thousands or other group separators
       format: double
-      example: '5.00'
+      example: 1.99
     Charge:
       required:
         - result
@@ -2435,7 +2462,42 @@ components:
           xml:
             name: is-subscription
         period:
-          $ref: '#/components/schemas/Subscription_period'
+          type: object
+          required:
+            - count
+            - unit
+          properties:
+            unit:
+              type: string
+              description: |
+                The unit of the period
+
+                * `day` - the subscription renews every *n* days
+                * `week` - the subscription renews  every *n* weeks
+                * `month` - the subscription renews  every *n* months
+                * `year` - the subscription renews  every *n* years
+              example: month
+              xml:
+                name: unit
+                attribute: true
+              enum:
+                - day
+                - week
+                - month
+                - year
+            count:
+              type: integer
+              description: The count of units in the period
+              example: 3
+              xml:
+                name: count
+                attribute: true
+          description: |
+            The period of the subscription (at which interval the consumer is being charged)
+
+            For example, to define a "3 month" period one would set the unit as `month` and the count as `3`.
+          xml:
+            name: period
         renewal:
           type: boolean
           description: |
@@ -2478,73 +2540,6 @@ components:
       example: "2015-03-12 04:44:16"
       xml:
         name: timestamp
-    BeginSingleChargeResponse_hosted:
-      required:
-        - redirectUrl
-      type: object
-      properties:
-        redirectUrl:
-          maxLength: 2048
-          minLength: 1
-          type: string
-          description: URL, where the user should be redirected to so the charge, can be authorized
-          example: https://www.superwallet.com/authorize
-          xml:
-            name: redirect-url
-      description: Provides information for proceeding with a hosted charge
-      xml:
-        name: hosted
-    RefundChargeRequest_notification:
-      required:
-        - send
-      properties:
-        send:
-          type: boolean
-          description: Flag to indicate if a notification should be sent for this refund
-          xml:
-            name: send
-            attribute: true
-          default: false
-      description: Element containing notification information
-      xml:
-        name: notification
-    Subscription_period:
-      required:
-        - count
-        - unit
-      type: object
-      properties:
-        unit:
-          type: string
-          description: |
-            The unit of the period
-
-            * `day` - the subscription renews every *n* days
-            * `week` - the subscription renews  every *n* weeks
-            * `month` - the subscription renews  every *n* months
-            * `year` - the subscription renews  every *n* years
-          example: month
-          xml:
-            name: unit
-            attribute: true
-          enum:
-            - day
-            - week
-            - month
-            - year
-        count:
-          type: integer
-          description: The count of units in the period
-          example: 3
-          xml:
-            name: count
-            attribute: true
-      description: |
-        The period of the subscription (at which interval the consumer is being charged)
-
-        For example, to define a "3 month" period one would set the unit as `month` and the count as `3`.
-      xml:
-        name: period
   examples:
     OptinRequest:
       value:
