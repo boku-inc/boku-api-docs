@@ -8,8 +8,8 @@ info:
     registered merchant account, merchants receive a security key used to authenticate communications in either
     direction.
 
-    Developers should consult the [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide) for additional details with respect to
-    implementing security on the Boku API's.
+    Developers should consult the [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
+    for additional details with respect to implementing security on the Boku API's.
 
     # API Flows
     The table below lists the typical steps in using each of the API methods. These steps are described in further
@@ -124,7 +124,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /optin/3.0/validate-optin:
     post:
       tags:
@@ -189,7 +189,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /optin/3.0/confirm-optin:
     post:
       tags:
@@ -244,7 +244,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /optin/3.0/cancel-optin:
     post:
       tags:
@@ -311,7 +311,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/charge:
     post:
       tags:
@@ -409,7 +409,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/query-charge:
     post:
       tags:
@@ -462,7 +462,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/reverse-charge:
     post:
       tags:
@@ -525,7 +525,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/begin-single-charge:
     post:
       tags:
@@ -617,7 +617,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/refund-charge:
     post:
       tags:
@@ -681,7 +681,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /billing/3.0/query-refund:
     post:
       tags:
@@ -735,7 +735,7 @@ paths:
           description: |
             Unauthorized
 
-            See [Boku API Signature Authentication Guide](https://developer.boku.com/docs/boku-api-signature-authentication-guide)
+            See [Boku API Signature Authentication Guide](https://github.com/boku-inc/boku-api-docs/blob/main/boku-api-auth/README.md)
   /refund-notification:
     post:
       tags:
