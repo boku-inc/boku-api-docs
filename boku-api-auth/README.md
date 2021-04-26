@@ -15,7 +15,7 @@ To simplify your integration, we have made several examples available, as well a
 ## Request / Response Flow
 
 * With every HTTP request, the client must submit an **Authorization** header advertising their identity, and authenticating the request as from them.
-* If for any reason the submitted Authorization is deemed invalid by the sever, a HTTP **401 Unauthorized** response will be returned.
+* If for any reason the submitted Authorization is deemed invalid by the server, a HTTP **401 Unauthorized** response will be returned.
     - The body of this error response should be text/plain, so as to be application layer API agnostic.
     - Authentication / Authorization related error responses will not be signed by the server.
 * If the submitted Authorization is deemed correct, the request will be processed and an application specific response returned.
@@ -101,13 +101,13 @@ Given the following HTTP request:
 
 ![Example](https://files.readme.io/f514cda-example.png)
 
-[comment]: <> (<pre style="background:#161b21;color:#fafbfc;">)
-[comment]: <> (<span style="background:#28a745">POST</span><span style="background:#ffd33d">&nbsp;</span><span style="background:#0366d6">/test/echo?foo=bar&hoge=piyo</span> HTTP/1.1)
+[comment]: <> (<pre>)
+[comment]: <> (<span style="background:#28a745;color:#fafbfc">POST</span><span style="background:#ffd33d;color:#fafbfc">&nbsp;</span><span style="background:#0366d6;color:#fafbfc">/test/echo?foo=bar&hoge=piyo</span> HTTP/1.1)
 [comment]: <> (Host: api.boku.com)
 [comment]: <> (Accept: text/xml)
-[comment]: <> (<span style="background:#6f42c1">Content-type: text/xml; charset=utf-8</span>)
+[comment]: <> (<span style="background:#6f42c1;color:#fafbfc">Content-type: text/xml; charset=utf-8</span>)
 [comment]: <> (Content-length: 282)
-[comment]: <> (<span style="background:#d73a49">)
+[comment]: <> (<span style="background:#d73a49;color:#fafbfc">)
 [comment]: <> (&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;)
 [comment]: <> (&lt;optin-request&gt;)
 [comment]: <> (    &lt;country&gt;US&lt;/country&gt;)
@@ -178,7 +178,7 @@ Here are some additional rules and clarifications regarding including signed-hea
 * Header keys are included into the Message to Sign using the **exact same case** as specified in the signed-headers field, **not** the case of the field in the HTTP request itself.
     - Example:
     - Authorization header contains: _signed-headers=x-foo_
-    - Authorization header contains: _signed-headers=x-foo_
+    - HTTP request contains: _X-Foo: fooValue_
     - Message to sign contains: _x-foo: fooValue_
 * All instances of a header called out in the signed-headers field will be included in the signature, in the order they were found in the HTTP message.
     - Example showing this combined with above rules:
@@ -203,7 +203,7 @@ secretKey = lookupKey(Authorization[key-id])
 Authorization[signature] = hex(hmac_sha256(secretKey, messageToSign))
 ```
 
-This signature should be places in the _signature_ parameter of the Authorization header to allow verification by the remote peer.
+This signature should be placed in the _signature_ parameter of the Authorization header to allow verification by the remote peer.
 
 # Signature Verification
 
@@ -231,7 +231,7 @@ If the signature matches, the request or response may be processed. In the case 
 
 This section contains various examples of correctly signed HTTP requests and responses, designed to allow verification of an implementation of this specification. The secret key value used for these examples is the ASCII value "secret_key_change_me".
 
-Only those types of requests which are used by the higher level application level API are required to be implemented for things to work, but to be fully compliant with this specification all of the below must produce matching signatures.
+Only those types of requests which are used by the application level API are required to be implemented for things to work, but to be fully compliant with this specification all of the below must produce matching signatures.
 
 ## Standard POST request
 
