@@ -10,7 +10,7 @@ With our Postman collection, developers can quickly test Boku API's without havi
 4. Within the Postman application, import `Merchant Test Environment.postman_environment.json` and `Payment Gateway (LPM).postman_collection.json`
    ![Import](src/img/Screenshot%20from%202021-04-28%2016-37-31.png)
 5. Add your `merchantId`, `keyId` and `apiKey` in the `Merchant Test Environment` environment variables. You can get these values from your account manager.
-   ![Import](src/img/Screenshot%20from%202021-04-28%2016-40-05.png)
+   ![Import](src/img/Screenshot%20from%202021-04-28%2016-52-05.png)
 6. Update the `country`, `currency`, `network` and `paymentMethod` in the `Payment Gateway (LPM)` collection to reflect the wallet you wish to test. You can get a list of wallets from your account manager.
    ![Import](src/img/Screenshot%20from%202021-04-28%2016-38-40.png)
 
