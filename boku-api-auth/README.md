@@ -99,7 +99,7 @@ timestamp
 
 Given the following HTTP request:
 
-![Example](https://files.readme.io/f514cda-example.png)
+![Example](https://raw.githubusercontent.com/boku-inc/boku-api-docs/main/boku-direct-lpm/guides/src/img/f514cda-example.png)
 
 [comment]: <> (<pre>)
 [comment]: <> (<span style="background:#28a745;color:#fafbfc">POST</span><span style="background:#ffd33d;color:#fafbfc">&nbsp;</span><span style="background:#0366d6;color:#fafbfc">/test/echo?foo=bar&hoge=piyo</span> HTTP/1.1)
